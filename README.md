@@ -1,5 +1,7 @@
 # FYP_Assessment_Platform
 
-Please change the connection string for the database in AppConfig
+1. Please change the connection string for the database in AppConfig. The coonection string should point to the database file directory \db\platforminfo.db in this project in 
 
-The coonection string should point to the database file directory \db\platforminfo.db in this project in 
+2. Rebuild the project if "SQLite.Interop.dll not found" Error occur
+
+3. It is reccomended to run the program in x64
