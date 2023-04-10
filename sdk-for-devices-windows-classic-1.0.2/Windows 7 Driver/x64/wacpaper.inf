@@ -1,0 +1,94 @@
+; wacpaper.inf
+; Installation inf for winusb driver used by Wacom Paper
+; (c) Copyright 2017 Wacom Technology
+
+[Version]
+Signature = "$Windows NT$"
+Class = USBDevice
+ClassGuid={88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider = %WacMT.Provider%
+CatalogFile=wacpaper.cat
+DriverVer=06/15/2017,1.0.0.2
+
+; ========== Manufacturer/Models sections ===========
+
+[Manufacturer]
+%WacMT.Manufacturer% = WacMT_WinUSB,NTx86,NTamd64
+
+[WacMT_WinUSB.NTx86]
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_0357&MI_01
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_0358&MI_01
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_035C
+
+[WacMT_WinUSB.NTamd64]
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_0357&MI_01
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_0358&MI_01
+%WacPaper.DeviceDesc%=WacPaper.Install, USB\VID_056a&PID_035C
+
+; =================== Installation ===================
+;[1]
+[WacPaper.Install]
+Include=winusb.inf
+Needs=WINUSB.NT
+
+;[2]
+[WacPaper.Install.Services]
+Include=winusb.inf
+AddService=WinUSB,0x00000002,WacPaper_ServiceInstall
+
+;[3]
+[WacPaper_ServiceInstall]
+DisplayName     = %WacPaper_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+;[4]
+[WacPaper.Install.Wdf]
+KmdfService=WINUSB, WinUsb_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion=1.9
+
+;[5]
+[WacPaper.Install.HW]
+AddReg=DevPaper_AddReg
+
+[DevPaper_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{72B0FDFE-53C5-46CE-AFEF-5B3558E3AFB4}"
+
+;[6]
+[WacPaper.Install.CoInstallers]
+AddReg=CoInstallers_AddReg
+CopyFiles=CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+; ================= Source Media Section =====================
+;[7]
+
+[SourceDisksNames]
+1 = %DISK_NAME%
+
+[SourceDisksFiles]
+WinUSBCoInstaller2.dll=1
+WdfCoInstaller01009.dll=1
+
+; =================== Strings ===================
+
+[Strings]
+WacMT.Provider="Wacom Co Ltd."
+WacMT.Manufacturer="Wacom Co Ltd."
+WacPaper.DeviceDesc="Wacom Paper Data"
+WacPaper_SvcDesc="Wacom Paper Data"
+DISK_NAME="Drivers"
+WacMT.ClassName="Wacom WinUSB Driver"
