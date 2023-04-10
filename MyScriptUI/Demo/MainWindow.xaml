@@ -1,0 +1,172 @@
+﻿<Window x:Class="MyScript.IInk.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyScript.IInk.Demo"
+        xmlns:Uc="clr-namespace:MyScript.IInk.UIReferenceImplementation;assembly=MyScript.InteractiveInk.UIReferenceImplementation.Wpf"
+        mc:Ignorable="d"
+        xmlns:Font="http://schemas.fontawesome.io/icons/"
+        Loaded="Window_Loaded"
+        Title="iink Demo" >
+    <Window.Resources>
+        <ResourceDictionary Source="/MyScript.InteractiveInk.UIReferenceImplementation.Wpf;component/ResourceDictionary.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border x:Name="TypeOfContentDialogParent" Margin="10" Grid.Row="1" BorderBrush="LightGray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65" ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Uc:EditorUserControl BorderThickness="0,1,0,1" BorderBrush="LightGray" Grid.Row="1" x:Name="UcEditor" MouseRightButtonDown="UcEditor_MouseRightButtonDown" />
+
+                <Grid Grid.Row="0" Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="*"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                        <ColumnDefinition  Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="Type" FontSize="18" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="Black" />
+
+                    <Button  Click="NewPart_Click" Grid.Column="2" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="FileOutline" ToolTip="New Page" />
+                        </Button.Content>
+                    </Button>
+                    <Button  Click="Previous_Click" Grid.Column="3" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="AngleLeft" ToolTip="Back" />
+                        </Button.Content>
+                    </Button>
+                    <Button  Click="Next_Click" Grid.Column="4" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="AngleRight" ToolTip="Next" />
+                        </Button.Content>
+                    </Button>
+
+                    <GridSplitter  IsEnabled="False" Height="Auto" Grid.Column="5" Margin="20" Width="2" Background="Gray" Foreground="gray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                    <Button  Click="Undo_Click" Grid.Column="6" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="Undo" ToolTip="Undo" />
+                        </Button.Content>
+                    </Button>
+                    <Button  Click="Redo_Click" Grid.Column="7" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="Repeat" ToolTip="Redo" />
+                        </Button.Content>
+                    </Button>
+
+                    <GridSplitter IsEnabled="False" Grid.Column="8" Height="Auto" Margin="20" Width="2" Background="Gray" Foreground="gray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                    <Button  Click="ResetZoom_Click" Grid.Column="9" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="Search" ToolTip="Reset Zoom" />
+                        </Button.Content>
+                    </Button>
+                    <Button  Click="ZoomIn_Click" Grid.Column="10" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="SearchPlus" ToolTip="Zoom In" />
+                        </Button.Content>
+                    </Button>
+                    <Button  Click="ZoomOut_Click" Grid.Column="11" Style="{StaticResource CustomButton}" Background="Transparent" BorderThickness="0">
+                        <Button.Content>
+                            <Font:ImageAwesome Style="{StaticResource Icon }" Icon="SearchMinus" ToolTip="Zoom Out" />
+                        </Button.Content>
+                    </Button>
+
+                    <Menu Grid.Column="12" VerticalAlignment="Center" FontSize="14" FontWeight="DemiBold">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <Font:ImageAwesome Style="{StaticResource Icon }" Margin="10,24,10,24" Icon="EllipsisV" ToolTip="More" />
+                            </MenuItem.Header>
+                            <MenuItem Header="Clear" Click="Clear_Click"/>
+                            <MenuItem Header="Convert" Click="Convert_Click"/>
+                            <Separator />
+                            <MenuItem Header="New" Click="New_Click"/>
+                            <MenuItem Header="Open" Click="Open_Click"/>
+                            <MenuItem Header="Save" Click="Save_Click"/>
+                            <MenuItem Header="Save as" Click="SaveAs_Click"/>
+                            <Separator />
+                            <MenuItem Header="Style">
+                                <MenuItem Header="Pen width">
+                                    <MenuItem x:Name="PenThin"   Header="Thin"   IsCheckable="True" IsChecked="False" Click="PenWidth_Clicked"/>
+                                    <MenuItem x:Name="PenMedium" Header="Medium" IsCheckable="True" IsChecked="True"  Click="PenWidth_Clicked"/>
+                                    <MenuItem x:Name="PenLarge"  Header="Large"  IsCheckable="True" IsChecked="False" Click="PenWidth_Clicked"/>
+                                </MenuItem>
+                                <MenuItem Header="Pen color">
+                                    <MenuItem x:Name="PenBlack" Header="Black" IsCheckable="True" IsChecked="True"  Click="PenColor_Clicked"/>
+                                    <MenuItem x:Name="PenRed"   Header="Red"   IsCheckable="True" IsChecked="False" Click="PenColor_Clicked"/>
+                                    <MenuItem x:Name="PenGreen" Header="Green" IsCheckable="True" IsChecked="False" Click="PenColor_Clicked"/>
+                                    <MenuItem x:Name="PenBlue"  Header="Blue"  IsCheckable="True" IsChecked="False" Click="PenColor_Clicked"/>
+                                </MenuItem>
+                                <MenuItem Header="Highlighter width">
+                                    <MenuItem x:Name="HighlighterThin"   Header="Thin"   IsCheckable="True" IsChecked="False" Click="HighlighterWidth_Clicked"/>
+                                    <MenuItem x:Name="HighlighterMedium" Header="Medium" IsCheckable="True" IsChecked="True"  Click="HighlighterWidth_Clicked"/>
+                                    <MenuItem x:Name="HighlighterLarge"  Header="Large"  IsCheckable="True" IsChecked="False" Click="HighlighterWidth_Clicked"/>
+                                </MenuItem>
+                                <MenuItem Header="Highlighter color">
+                                    <MenuItem x:Name="HighlighterYellow" Header="Yellow" IsCheckable="True" IsChecked="True"  Click="HighlighterColor_Clicked"/>
+                                    <MenuItem x:Name="HighlighterRed"    Header="Red"    IsCheckable="True" IsChecked="False" Click="HighlighterColor_Clicked"/>
+                                    <MenuItem x:Name="HighlighterGreen"  Header="Green"  IsCheckable="True" IsChecked="False" Click="HighlighterColor_Clicked"/>
+                                    <MenuItem x:Name="HighlighterBlue"   Header="Blue"   IsCheckable="True" IsChecked="False" Click="HighlighterColor_Clicked"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="Smart Guide" IsCheckable="True" IsChecked="True" Checked="SmartGuideEnabled_Click" Unchecked="SmartGuideEnabled_Click"/>
+                        </MenuItem>
+                    </Menu>
+                </Grid>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" >
+                    <ToggleButton x:Name="Pen" Style="{StaticResource CustomToggleButton}" Click="Pen_Click" >
+                        <ToggleButton.Content>
+                            <TextBlock Text="Pen" FontWeight="DemiBold" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton x:Name="Hand" Style="{StaticResource CustomToggleButton}" Click="Hand_Click" Grid.Column="1">
+                        <ToggleButton.Content>
+                            <TextBlock Text="Hand" FontWeight="DemiBold" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton x:Name="Eraser" Style="{StaticResource CustomToggleButton}" Click="Eraser_Click" Grid.Column="2">
+                        <ToggleButton.Content>
+                            <TextBlock Text="Eraser" FontWeight="DemiBold" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton x:Name="Selector" Style="{StaticResource CustomToggleButton}" Click="Selector_Click" Grid.Column="3">
+                        <ToggleButton.Content>
+                            <TextBlock Text="Selector" FontWeight="DemiBold" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton x:Name="Highlighter" Style="{StaticResource CustomToggleButton}" Click="Highlighter_Click" Grid.Column="4">
+                        <ToggleButton.Content>
+                            <TextBlock Text="Highlighter" FontWeight="DemiBold" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Grid.Column="5"/>
+                    <CheckBox x:Name="ActivePen" VerticalAlignment="Center" Click="ActivePen_Click" IsChecked="True" Grid.Column="6">
+                        <CheckBox.Content>
+                            <TextBlock Text="Active Pen" FontWeight="DemiBold" FontSize="14" />
+                        </CheckBox.Content>
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <local:TypeOfContentDialog x:Name="TypeOfContentDialog" />
+    </Grid>
+</Window>

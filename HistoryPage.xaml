@@ -1,0 +1,138 @@
+﻿<Page x:Class="WillDevicesSampleApp.Net.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WillDevicesSampleApp.Net"
+      mc:Ignorable="d" 
+      d:DesignHeight="759" d:DesignWidth="1440"
+      WindowWidth="1440"
+      WindowHeight="759"
+      Title="HistoryPage">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="20 20 20 0">
+            <StackPanel Orientation="Horizontal" >
+                <Button Name="EnglishBtn" Margin="0 0 20 0"  Style="{StaticResource tabButton}" Content="English Assessment" FontSize="24" FontFamily="Microsoft PhagsPa" BorderBrush="#FF010758" Click="EnglishBtn_Click">
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.Foreground>
+                </Button>
+                <Button Name="ChineseBtn" Margin="0 0 0 0" Style="{StaticResource tabButton}" Content="Chinese Assessment" FontSize="24" FontFamily="Microsoft PhagsPa" Click="ChineseBtn_Click">
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.Foreground>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!--Seprator-->
+        <Grid Grid.Row="1" Margin="20 0 20 0">
+            <Separator Height="1" Margin="0 0 0 10">
+                <Separator.Background>
+                    <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                </Separator.Background>
+            </Separator>
+        </Grid>
+
+
+        <Grid Grid.Row="2"  Margin="20,23,20,0">
+            <DataGrid Visibility="Collapsed" x:Name="ChineseDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" FontSize="20" HorizontalAlignment="Center" IsReadOnly="True"  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" SelectionChanged="ChineseDataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.9*" Header="Date" Binding="{Binding TimeStamp}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.6*" Header="Name" Binding="{Binding StudentName}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.3*"  Header="WPM" Binding="{Binding WPM}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="auto" Header="Character   " Binding="{Binding CharCorrectness}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="auto" Header="Stroke Order   " Binding="{Binding StrokeOrder}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="auto" Header="Stroke Count   " Binding="{Binding StrokeCount}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="auto" Header="Baseline " Binding="{Binding BaseLine}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.3*" Header="Size" Binding="{Binding SizeConsistency}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*" Header="Smoothness" Binding="{Binding Smoothness}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.3*" Header="Accur." Binding="{Binding Total}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Grade" Binding="{Binding Grade}"></DataGridTextColumn>
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+
+            <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Visibility="Visible" x:Name="EnglishDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" FontSize="20" HorizontalAlignment="Center" Style="{DynamicResource DataGridStyle1}" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Visibility="Hidden" Width="auto" Header="Id" Binding="{Binding ChAssessmentId}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="2*" Header="Date" Binding="{Binding TimeStamp}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Name" Binding="{Binding StudentName}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*"  Header="WPM" Binding="{Binding WPM}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Character" Binding="{Binding CharCorrectness}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*" Header="Tilt" Binding="{Binding WordTilt}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Baseline" Binding="{Binding BaseLine}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*" Header="Size" Binding="{Binding SizeConsistency}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Smoothness" Binding="{Binding Smoothness}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*" Header="Accur." Binding="{Binding Total}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Grade" Binding="{Binding Grade}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  Visibility="Hidden" x:Name="StrokeDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" FontSize="20" HorizontalAlignment="Center" Style="{DynamicResource DataGridStyle1}" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.5*" Header="Character" Binding="{Binding Label}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Correct Sequence" Binding="{Binding CorrectSequence}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Written Sequence" Binding="{Binding WrittenSequence}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="20,20,20,20">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Visibility="Hidden"  Content="Stroke Details" Name="ViewStrokeBtn" Height="65" Width="250" FontSize="30" Foreground="White" Margin="0,0,30,0" Click="ViewStrokeBtn_Click" IsEnabledChanged="ViewStrokeBtn_IsEnabledChanged" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="16"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.BorderBrush>
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.Background>
+                </Button>
+
+                <Button  Visibility="Collapsed" Content="Back To Assessment" Name="BackToAssessmentBtn" Height="65" Width="350" FontSize="30" Foreground="White" Margin="0,0,30,0" Click="BackToAssessmentBtn_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="16"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.BorderBrush>
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.Background>
+                </Button>
+
+                <Button Content="Back To Home Page" Name="BackToHomeBtn" Foreground="White"  Height="65" Width="350"  FontSize="30" Click="BackToHomeBtn_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="16"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.BorderBrush>
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+
+
+    </Grid>
+</Page>

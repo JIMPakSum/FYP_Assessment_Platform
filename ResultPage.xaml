@@ -1,0 +1,208 @@
+﻿<Page x:Class="WillDevicesSampleApp.Net.ResultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WillDevicesSampleApp.Net"
+      mc:Ignorable="d" 
+      d:DesignHeight="759" d:DesignWidth="1440"
+      WindowWidth="1440"
+      WindowHeight="759"
+      WindowTitle="Assessment Result">
+
+    <Grid Background="LightGray" >
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Background="#FFE4E4E4" CornerRadius="40,40,40,40" Padding="30,30,30,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="1"></DropShadowEffect>
+                </Border.Effect>
+                <Grid>
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Stretch" Margin="0,10,0,0" TextWrapping="Wrap" Text="Overall Score" Height="77" FontSize="50" TextAlignment="Center" Foreground="#FF0D2E6F" FontFamily="Microsoft PhagsPa" FontWeight="Bold"/>
+                        <TextBlock HorizontalAlignment="Stretch" x:Name="Grade" TextWrapping="Wrap" Text="B" FontSize="72" TextAlignment="Center" RenderTransformOrigin="0.493,1.083" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"/>
+                        <Border Height="7" Background="#FF010758" Margin="0,15,0,0"/>
+                        <StackPanel Margin="0,57,0,0" >
+                            <TextBlock HorizontalAlignment="Stretch" Margin="0,10,0,0" TextWrapping="Wrap" Text="Handwriting Speed" Height="77" FontSize="50" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="WPM" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"><Run Language="zh-tw" Text="15"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="WPM" FontSize="35" Foreground="#D8010758" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                            <TextBlock HorizontalAlignment="Stretch" Margin="0,10,0,0" TextWrapping="Wrap" Text="Handwriting Accuracy" Height="77" FontSize="50" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="AccuracyScore" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa" ><Run Text="7"/><Run Language="zh-tw" Text="2"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="/ 100" FontSize="35" Foreground="#D8010757" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" >
+                <Grid Margin="25,0,0,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Background="#FFE4E4E4" CornerRadius="40,40,40,40" Padding="30,30,30,30">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="1"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="6*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0"  Orientation="Vertical">
+                                <TextBlock Text="Accuracy Detail" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="45" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"></TextBlock>
+                                <Border Height="7" Background="#FF010758" Margin="0,10,0,0"/>
+
+                            </StackPanel>
+                            <WrapPanel  HorizontalAlignment="Center" Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="0,18,0,0">
+                                <Grid Name="CCToolTip">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Char. Correctness" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <TextBlock x:Name="CharCorrectness" TextWrapping="Wrap" Text="78" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa" />
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" FontSize="35" Foreground="#D8010757" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid Name="BLToolTip">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="BaseLine" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <TextBlock x:Name="Baseline" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa" ><Run Text="7"/><Run Language="zh-tw" Text="0"/></TextBlock>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" FontSize="35" Foreground="#D8010757" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid Name="SCToolTip" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Size Consistency" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <TextBlock x:Name="SizeConsistency" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa" ><Run Text="7"/><Run Language="zh-tw" Text="2"/></TextBlock>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" FontSize="35" Foreground="#D8010757" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid Name="SToolTip">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Smoothness" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <TextBlock x:Name="Smoothness" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa" ><Run Text="7"/><Run Language="zh-tw" Text="1"/></TextBlock>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" FontSize="35" Foreground="#D8010757" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid x:Name="StrokeCountGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Stroke Count" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock  x:Name="StrokeCount" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"><Run Language="zh-tw" Text="71"/></TextBlock>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="35" Foreground="#D8010758" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"><Run Language="zh-tw" Text="%"/></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid x:Name="StrokeOrderGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Stroke Order" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock x:Name="StrokeOrder" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"><Run Language="zh-tw" Text="68"/></TextBlock>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="35" Foreground="#D8010758" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"><Run Language="zh-tw" Text="%"/></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <Grid x:Name="WordTiltGrid" Visibility="Collapsed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="SharedGroup" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Word Tilt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontFamily="Microsoft PhagsPa" Foreground="#FF010758"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock  x:Name="WordTilt" TextWrapping="Wrap" Text="20" FontSize="70" TextAlignment="Center" Foreground="#FF010758" FontFamily="Microsoft PhagsPa"/>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" FontSize="35" Foreground="#D8010758" FontFamily="Microsoft PhagsPa" VerticalAlignment="Bottom" TextAlignment="Center" Margin="12,0,0,-5"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+
+
+                            </WrapPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Button Content="Back To HomePage" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Bottom" Height="73" Width="314" Click="Button_Click" FontSize="24" FontFamily="Microsoft PhagsPa" Foreground="White">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                        </Button.Background>
+                    </Button>
+
+                    <WpfPlot Visibility="Hidden" Name="WpfPlot"/>
+                    <Button Visibility="Hidden" Content="Show Graph" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Bottom" Height="73" Width="314" Click="Show_Graph" FontSize="24" FontFamily="Microsoft PhagsPa" Margin="0,0,387,0" Foreground="White">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource ButtonColor1}"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+
+            </Border>
+        </Grid>
+
+
+    </Grid>
+</Page>

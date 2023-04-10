@@ -1,0 +1,73 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:WillDevicesSampleApp"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Controls="using:Wacom.UX"
+      xmlns:RuntimeBinder="clr-namespace:Microsoft.CSharp.RuntimeBinder;assembly=Microsoft.CSharp" x:Class="WillDevicesSampleApp.RealTimeInkPage"
+      xmlns:Uc="clr-namespace:MyScript.IInk.UIReferenceImplementation;assembly=MyScript.InteractiveInk.UIReferenceImplementation.Wpf"
+      mc:Ignorable="d"
+      SizeChanged="Page_SizeChanged"
+      WindowWidth="1440"
+      WindowHeight="759"
+      Loaded="OnLoad"
+      WindowTitle="Handwriting Assessment"
+      >
+
+    <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
+    <Grid HorizontalAlignment="Stretch" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--
+        <TextBlock x:Name="textBlockHoverCoordinates"
+          TextAlignment="Left"
+          Grid.Row="0"
+          HorizontalAlignment="Left"
+          Height="17"
+          Margin="20,10,0,0"
+          TextWrapping="NoWrap"
+          Text=""
+          VerticalAlignment="Top" Width="350"/>
+        -->
+        <Border BorderThickness="1" Grid.Row="3" BorderBrush="Black" Visibility="Hidden"  VerticalAlignment="Stretch">
+            <InkCanvas x:Name="m_Canvas" Margin="20,29,20,20" EditingMode="None" EditingModeInverted="None" MoveEnabled="False" ResizeEnabled="False" Strokes="{Binding Path=Strokes}" Background="#FFE9E9E9" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Stretch">
+                <InkCanvas.DefaultDrawingAttributes>
+                    <DrawingAttributes  x:Name="m_DrawingAttributes" Color="#FF114E8B" FitToCurve="True" Height="0.75" IgnorePressure="False" IsHighlighter="False" StylusTip="Ellipse" StylusTipTransform="Identity" Width="0.75"/>
+                </InkCanvas.DefaultDrawingAttributes>
+
+            </InkCanvas>
+
+        </Border>
+        <Border Grid.Row="1"  HorizontalAlignment="Left" Margin="0 5 0 5 " >
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Image  Margin="5 0 0 0" Width="40" Height="40" Source="Assets/Clock.png"></Image>
+
+                <Grid VerticalAlignment="Center" Margin="10 0 0 0">
+                    <TextBlock x:Name="Timer"></TextBlock>
+                </Grid>
+                <Button Content="End Test" Click="Button_Click"></Button>
+            </StackPanel>
+        </Border>
+
+        <RichTextBox x:Name="richtextbox"  Grid.Row="2"  FontFamily="Microsoft PhagsPa" >
+                <FlowDocument>
+
+                </FlowDocument>
+            </RichTextBox>
+
+
+     
+        <Uc:EditorUserControl Margin="5,30,5,5" BorderThickness="1" BorderBrush="LightGray" Grid.Row="3" x:Name="UcEditor"  />
+        
+            
+
+
+
+    </Grid>
+</Page>
