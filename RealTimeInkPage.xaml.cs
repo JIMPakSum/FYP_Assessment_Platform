@@ -536,8 +536,6 @@ namespace WillDevicesSampleApp
                 o.RecognizedWords = UcEditor.SmartGuide.GetWordsRecognized();
                 o.CurrentLanguage = currentlanguage;
                 o.Jiix = UcEditor.SmartGuide.GetJiixExport();
-                o.DegreeList = this.degreelist;
-                o.StrokeList = this.StrokeList;
                 o.studentname = datapassed.studentname;
 
                 if (editor.Part != null)
@@ -630,8 +628,7 @@ namespace WillDevicesSampleApp
             o.RecognizedWords = UcEditor.SmartGuide.GetWordsRecognized();
             o.CurrentLanguage = currentlanguage;
             o.Jiix = UcEditor.SmartGuide.GetJiixExport();
-            o.DegreeList = this.degreelist;
-            o.StrokeList = this.StrokeList;
+
             o.studentname = datapassed.studentname;
 
             if (editor.Part != null)
