@@ -469,7 +469,7 @@ namespace WillDevicesSampleApp.Net
 
                     char CharacterRecognized;
 
-                    if (char.TryParse(jiixWord["label"], out CharacterRecognized) && IsPuncuation(CharacterRecognized))
+                    if (char.TryParse(jiixWord["label"], out CharacterRecognized) && IsPuncuation(CharacterRecognized) && !jiixWord.ContainsKey("bounding-box"))
                     {
                         continue;
                     }
@@ -528,7 +528,7 @@ namespace WillDevicesSampleApp.Net
 
                     char CharacterRecognized;
 
-                    if (char.TryParse(jiixWord["label"], out CharacterRecognized) && IsPuncuation(CharacterRecognized))
+                    if (char.TryParse(jiixWord["label"], out CharacterRecognized) && IsPuncuation(CharacterRecognized) && !jiixWord.ContainsKey("bounding-box"))
                     {
                         continue;
                     }
@@ -1384,7 +1384,11 @@ namespace WillDevicesSampleApp.Net
                 string strokesequence = "";
                 using (var db = new WritingsDbContext())
                 {
-                    strokesequence = db.StrokeDatas.Where(x => x.Character == character).Select(x => x.StrokeSequence).FirstOrDefault().ToString();
+                    strokesequence = db.StrokeDatas.Where(x => x.Character == character).Select(x => x.StrokeSequence).FirstOrDefault();
+                    if(strokesequence == null)
+                    {
+                        continue;
+                    }
                     TotalStrokes += strokesequence.Length;
                 }
 
